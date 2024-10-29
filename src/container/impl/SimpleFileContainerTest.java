@@ -75,6 +75,7 @@ class SimpleFileContainerTest {
         }
     }
 
+
     @Test
     void testReopenAndRetrieveData() throws IOException {
         container.open();
