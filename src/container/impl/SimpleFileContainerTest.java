@@ -51,7 +51,7 @@ class SimpleFileContainerTest {
 
         // Validate data in the data file
         try (FileChannel dataChannel = FileChannel.open(dataFilePath, StandardOpenOption.READ)) {
-            ByteBuffer buffer = ByteBuffer.allocate(5); // 1 byte marker + 4 bytes for int (value)
+            ByteBuffer buffer = ByteBuffer.allocate(5);
             dataChannel.read(buffer, key * 5);
             buffer.flip();
 
@@ -82,7 +82,7 @@ class SimpleFileContainerTest {
         container.update(key, 99);
         container.close();
 
-        // Reopen container and retrieve data to ensure persistence
+
         container.open();
         assertEquals(99, container.get(key), "Value should persist and be 99 after reopening.");
     }
@@ -94,10 +94,10 @@ class SimpleFileContainerTest {
         container.update(key, 25);
         container.remove(key);
 
-        // Verify that the entry is marked as deleted in the data file
+
         try (FileChannel dataChannel = FileChannel.open(dataFilePath, StandardOpenOption.READ)) {
-            ByteBuffer buffer = ByteBuffer.allocate(1); // Only need the deletion marker
-            dataChannel.read(buffer, key * 5); // Each entry is 5 bytes (1 byte marker + 4 bytes value)
+            ByteBuffer buffer = ByteBuffer.allocate(1);
+            dataChannel.read(buffer, key * 5);
             buffer.flip();
 
             assertEquals(1, buffer.get(), "First byte should indicate entry is marked as deleted.");

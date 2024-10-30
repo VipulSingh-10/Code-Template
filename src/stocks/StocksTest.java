@@ -12,7 +12,7 @@ class StocksTest {
     @Test
     void getTest() {
         try {
-            Stocks stocks = new Stocks("E:/Vipul/downloads/Code template/ex1_idb/stocks.bin");
+            Stocks stocks = new Stocks("ex1_idb/stocks.bin");
             StockEntry e1 = stocks.get(0);
             StockEntry e2 = stocks.get(1);
             StockEntry e3 = stocks.get(8);
@@ -28,7 +28,7 @@ class StocksTest {
     @Test
     void iteratorTest() {
         try {
-            Stocks stocks = new Stocks("E:/Vipul/downloads/Code template/ex1_idb/stocks.bin");
+            Stocks stocks = new Stocks("ex1_idb/stocks.bin");
             Iterator<StockEntry> it = stocks.iterator();
             assertTrue(it.hasNext());
             assertEquals(it.next(), new StockEntry(0, "Volvo", 0, 99f));
